@@ -6,6 +6,7 @@ const multer = require("multer");
 
 const upload = multer({ dest: "./uploads/" });
 
+router.get("/getContact", contactController.listContacts);
 //Routes does require authentication
 router.post("/savecontact", auth, contactController.createContact);
 

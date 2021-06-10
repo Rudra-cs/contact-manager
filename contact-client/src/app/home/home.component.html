@@ -1,0 +1,19 @@
+<app-nav></app-nav>
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card mt-2" *ngFor="let contact of contactData">
+        <div class="card-header">{{ contact.contactName }}</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">{{ contact.contactType }}</div>
+          </div>
+          <div class="row">
+            <div class="col-12">{{ contact.contactPhone }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
