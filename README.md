@@ -62,10 +62,12 @@
 
 ---
 
-### `contact`
+## `contacts`
 
 1. `GET /getcontact`
 
    Get all the contact from the user
 
 2. ``
+
+## `users`
