@@ -21,6 +21,7 @@ router.get(
   auth,
   contactController.getContactsByUser
 );
+router.get("/getContactsById/:id", auth, contactController.getContactsById);
 
 router.post("/upload", upload.single("imagefile"), (req, res) => {
   res.status(200).json({

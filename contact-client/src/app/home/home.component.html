@@ -1,18 +1,23 @@
 <app-nav></app-nav>
 
-<div class="container">
-  <div class="row mt-4">
-    <div class="col-12">
-      <div class="card mt-2" *ngFor="let contact of contactData">
-        <div class="card-header">{{ contact.contactName }}</div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-12">{{ contact.contactType }}</div>
-          </div>
-          <div class="row">
-            <div class="col-12">{{ contact.contactPhone }}</div>
-          </div>
-        </div>
+<div class="mx-5">
+  <div class="container my-4">
+    <div class="row no-gutters rowl">
+      <div class="col-lg-5">
+        <img
+          class="img-fluid"
+          src="https://images.pexels.com/photos/3690511/pexels-photo-3690511.jpeg"
+          alt="Profile Pic"
+        />
+      </div>
+
+      <div class="col-lg-7 px-5 pt-3">
+        <h2 class="font-weight-bold py-3">Welcome !!</h2>
+
+        <h4 class="font-weight-bold py-3">
+          Contact Manager is an website which stores your contact.
+        </h4>
+        <h5 class="font-weight-bold py-3">Join Now!</h5>
       </div>
     </div>
   </div>

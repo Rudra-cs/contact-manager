@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Contacts</a>
+    <a class="navbar-brand" href="#" *ngIf="!is_Show">Welcome {{ uname }}!</a>
+    <a class="navbar-brand" *ngIf="is_Show">Contacts</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,14 +16,44 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            *ngIf="!is_Show"
+            routerLink="/contact/list"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            *ngIf="!is_Show"
+            routerLink="/contacts/add"
+            >Add Contact</a
+          >
         </li>
       </ul>
       <form class="d-flex">
-        <a routerLink="/register" class="btn btn-outline-primary mx-2"
+        <a
+          routerLink="/register"
+          class="btn btn-outline-primary mx-2"
+          *ngIf="is_Show"
           >SignUp</a
         >
-        <a routerLink="/login" class="btn btn-outline-warning mx-2">Login</a>
+        <a
+          routerLink="/login"
+          class="btn btn-outline-warning mx-2"
+          *ngIf="is_Show"
+          >Login</a
+        >
+        <a
+          href=""
+          class="btn btn-outline-warning mx-2"
+          *ngIf="!is_Show"
+          (click)="onLogout()"
+          >Logout</a
+        >
       </form>
     </div>
   </div>

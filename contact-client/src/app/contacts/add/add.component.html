@@ -6,23 +6,27 @@
       <div class="col-lg-5">
         <img
           class="img-fluid"
-          src="https://images.pexels.com/photos/551625/pexels-photo-551625.jpeg"
-          alt="Register"
+          src="https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg"
+          alt="Profile Pic"
         />
       </div>
-      <div class="col-lg-7 px-5 pt-4">
-        <h1 class="font-weight-bold py-2">How You Doin?</h1>
-        <h4>Sign up to create your account</h4>
-        <form #regForm="ngForm" (ngSubmit)="onSubmitForm()">
-          <div [class]="isError ? 'alert alert-danger' : 'd-none'" class="my-3">
+
+      <div class="col-lg-7 px-5 pt-3">
+        <h1 class="font-weight-bold py-3">Add Contact</h1>
+        <form #addForm="ngForm" (ngSubmit)="onAdd()">
+          <div
+            [class]="isError ? 'alert alert-danger' : 'd-none'"
+            class="my-3 p-2"
+          >
             {{ message }}
           </div>
           <div
             [class]="isSuccess ? 'alert alert-success' : 'd-none'"
-            class="my-3"
+            class="my-3 p-2"
           >
             {{ message }}
           </div>
+
           <div class="form-row">
             <div class="col-lg-7">
               <input
@@ -30,7 +34,7 @@
                 name="fullname"
                 placeholder="Full Name"
                 class="form-control my-3 pt-3"
-                [(ngModel)]="userData.fullName"
+                [(ngModel)]="userData.cname"
                 required
                 pattern="^[a-zA-Z ]{3,30}$"
                 [class.is-invalid]="
@@ -61,7 +65,7 @@
                 "
                 required
                 pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
-                [(ngModel)]="userData.email"
+                [(ngModel)]="userData.cemail"
                 #email="ngModel"
               />
               <div *ngIf="email.errors && email.touched && email.invalid">
@@ -78,35 +82,58 @@
           <div class="form-row">
             <div class="col-lg-7">
               <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                class="form-control my-3 pt-3"
+                type="text"
                 required
-                pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,20}$"
-                [(ngModel)]="userData.password"
-                #pass="ngModel"
-                [class.is-invalid]="pass.errors && pass.touched && pass.invalid"
+                name="phone"
+                #num="ngModel"
+                pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"
+                placeholder="Phone Number"
+                class="form-control my-3 pt-3"
+                [(ngModel)]="userData.cphone"
+                [class.is-invalid]="num.errors && num.touched && num.invalid"
               />
-              <div *ngIf="pass.errors && pass.touched && pass.invalid">
-                <div class="text-danger" *ngIf="pass.errors.required">
-                  Password is required
+              <div *ngIf="num.errors && num.touched && num.invalid">
+                <div class="text-danger" *ngIf="num.errors.required">
+                  Phone no. is required
                 </div>
-                <div class="text-danger" *ngIf="pass.invalid">
-                  Password should be min 6 letters and max 20 letters with
-                  atleast one number character
+                <div class="text-danger" *ngIf="num.invalid">
+                  Password should be eg:9090312443
                 </div>
               </div>
             </div>
           </div>
+
           <div class="form-row">
             <div class="col-lg-7">
-              <button class="btn1 mt-3 mb-3" [disabled]="regForm.form.invalid">
-                Register
+              <input
+                type="text"
+                required
+                name="type"
+                #type="ngModel"
+                pattern="^(?=.*[A-Za-z0-9])[A-Za-z0-9 _]*$"
+                placeholder="Type of Contact"
+                class="form-control my-3 pt-3"
+                [(ngModel)]="userData.ctype"
+                [class.is-invalid]="type.errors && type.touched && type.invalid"
+              />
+              <div *ngIf="type.errors && type.touched && type.invalid">
+                <div class="text-danger" *ngIf="type.errors.required">
+                  Type is required
+                </div>
+                <div class="text-danger" *ngIf="type.invalid">
+                  Should contain only numbers and letters
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-lg-7">
+              <button class="btn1 mt-3 mb-5" [disabled]="addForm.form.invalid">
+                Add Contact
               </button>
             </div>
           </div>
-          <p>Are you a member?<a routerLink="/login">Login </a>👀</p>
         </form>
       </div>
     </div>

@@ -1,0 +1,46 @@
+<app-nav></app-nav>
+
+<div class="mx-5">
+  <h2 class="font-weight-bold py-3" *ngIf="!user.length">No Contacts Found</h2>
+  <div class="container my-4" *ngFor="let contact of user">
+    <div class="row no-gutters rowl">
+      <div class="col-lg-5">
+        <img
+          class="img-fluid"
+          src="https://images.pexels.com/photos/2246258/pexels-photo-2246258.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="Profile Pic"
+        />
+      </div>
+
+      <div class="col-lg-7 px-5 pt-3">
+        <h2 class="font-weight-bold py-3">Name: {{ contact.contactName }}</h2>
+
+        <div class="col-12">
+          <h4>Email: {{ contact.contactEmail }}</h4>
+        </div>
+
+        <div class="col-12">
+          <h4>Type: {{ contact.contactType }}</h4>
+        </div>
+
+        <div class="col-12">
+          <h4>Phone: {{ contact.contactPhone }}</h4>
+        </div>
+
+        <div>
+          <a
+            routerLink="/contact/edit/{{ contact._id }}"
+            (click)="onEdit(contact._id)"
+            class="btn btn-warning col-4 p-2 mt-2"
+            >Edit Contact</a
+          >
+        </div>
+        <div>
+          <a (click)="onDelete(contact._id)" class="btn btn-dark col-4 p-2 mt-2"
+            >Remove Contact</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

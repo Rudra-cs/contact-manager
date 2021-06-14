@@ -1,0 +1,87 @@
+<app-nav></app-nav>
+<div class="back">
+  <div class="container">
+    <div [class]="isError ? 'alert alert-danger' : 'd-none'" class="my-4">
+      {{ message }}
+    </div>
+    <div [class]="isSuccess ? 'alert alert-success' : 'd-none'" class="my-4">
+      {{ message }}
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card shadow mt-4">
+          <div class="card-header bg-success text-white">
+            <div>
+              <h4>
+                Contact Name: <strong>{{ contact.cname }}</strong>
+              </h4>
+            </div>
+          </div>
+          <div class="card-body border border-success">
+            <div class="row">
+              <div class="col-12 mt-4 text-dark">
+                <div class="col">
+                  <label>Contact Name:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="contactname"
+                    placeholder="ContactName"
+                    [(ngModel)]="contact.cname"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mt-4 text-dark">
+                <label>Phone Number:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="contactname"
+                  placeholder="ContactPhone"
+                  [(ngModel)]="contact.cphone"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mt-4 text-dark">
+                <div class="col">
+                  <label>Email:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="contactname"
+                    placeholder="ContactEmail"
+                    [(ngModel)]="contact.cemail"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mt-4 text-dark">
+                <div class="col">
+                  <label>Type:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="contactname"
+                    placeholder="ContactType"
+                    [(ngModel)]="contact.ctype"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button class="col-6 mt-4 btn btn-dark" (click)="onClick($event)">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

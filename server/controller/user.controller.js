@@ -10,9 +10,9 @@ exports.register = async (req, res) => {
       .string()
       .required()
       .min(3)
-      .pattern(new RegExp("^[a-zA-Z]{3,30}$")),
+      .pattern(new RegExp("^[a-zA-Z ]{3,30}$")),
     email: joi.string().email().required(),
-    password: joi.string().required().min(6).max(15),
+    password: joi.string().required().min(6).max(20),
   });
   try {
     let userFields = await userSchema.validateAsync(req.body);
@@ -42,9 +42,10 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const loginSchema = joi.object({
-    email: joi.string().email().required(),
-    password: joi.string().required().min(6).max(15),
+    email: joi.string().email(),
+    password: joi.string().min(6).max(15),
   });
+
   try {
     const loginFields = await loginSchema.validateAsync(req.body);
     // WHether the user with the provided email exits or not

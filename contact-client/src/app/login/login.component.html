@@ -13,29 +13,65 @@
       <div class="col-lg-7 px-5 pt-5">
         <h1 class="font-weight-bold py-3">Welcome Back!</h1>
         <h4>Sign into your account</h4>
-        <form>
+        <form name="myForm" #loginForm="ngForm" (ngSubmit)="onLogin()">
           <div class="form-row">
+          <div
+            [class]="isError ? 'alert alert-danger' : 'd-none'"
+            class="my-3"
+          >{{message}}</div>
+          <div
+            [class]="isSuccess ? 'alert alert-success' : 'd-none'"
+            class="my-3"
+          >{{ message}}</div>
             <div class="col-lg-7">
               <input
                 type="email"
+                #em="ngModel"
+                required
+                name="email"
+                pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
                 placeholder="Email-Address "
+                [class.is-invalid]="em.errors && em.touched && em.invalid"
                 class="form-control my-3 pt-3"
+                [(ngModel)]="email"
               />
+               <div *ngIf="em.errors && em.touched && em.invalid">
+                <div class="text-danger" *ngIf="em.errors.required">
+                  Email-Address is required 
+                </div>
+                 <div class="text-danger" *ngIf="em.invalid">
+                  Proper Email-Address is required 
+                </div>
+              </div>
             </div>
           </div>
           <div class="form-row">
             <div class="col-lg-7">
               <input
                 type="password"
+                required
+                name=password
+                #pass="ngModel"
+                 pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,20}$"
                 placeholder="Password"
                 class="form-control my-3 pt-3"
+                [(ngModel)]="password"
+                 [class.is-invalid]="pass.errors && pass.touched && pass.invalid"
               />
+              <div *ngIf="pass.errors && pass.touched && pass.invalid">
+                <div class="text-danger" *ngIf="pass.errors.required">
+                  Password is required 
+                </div>
+                <div class="text-danger" *ngIf="pass.invalid">
+                  Password should be min 6 letters and max 20 letters with atleast one number character
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="form-row">
             <div class="col-lg-7">
-              <button type="button" class="btn1 mt-3 mb-5">Login</button>
+              <button class="btn1 mt-3 mb-5" [disabled]="loginForm.form.invalid">Login</button>
             </div>
           </div>
           <p>

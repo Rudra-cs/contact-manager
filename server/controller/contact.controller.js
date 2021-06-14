@@ -1,4 +1,5 @@
 const Contact = require("../models/Contact");
+// TODO: Add joi verification
 
 // List contacts as per user
 exports.listContacts = async (req, res) => {
@@ -65,9 +66,11 @@ exports.updateContact = async (req, res) => {
     } else {
       res.status(200).json({
         message: "Contact Updated Succesfully",
+        updated: updatedContact,
       });
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json({
       message: "Something went wrong!",
       error: err,
@@ -136,6 +139,27 @@ exports.getContactsByUser = async (req, res) => {
     if (!contacts) {
       contacts = [];
     }
+    res.status(200).json({
+      message: "Contacts Successfully fetched",
+      user: contacts,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Something Went Wrong!",
+      error: err,
+    });
+  }
+};
+
+exports.getContactsById = async (req, res) => {
+  const id = req.params.id;
+  try {
+    let contacts = await Contact.findById(id).populate("userId");
+
+    if (!contacts) {
+      contacts = [];
+    }
+    console.log(contacts);
     res.status(200).json({
       message: "Contacts Successfully fetched",
       user: contacts,

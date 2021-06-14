@@ -5,14 +5,17 @@ const contactRoutes = require("./routes/contacts");
 const userRoutes = require("./routes/users");
 const cors = require("cors");
 
+const corsOption = {
+  origin: "*",
+};
 const port = process.env.PORT || 3000;
 const app = express();
-app.use(cors());
+app.use(cors(corsOption));
 
 app.use(logger);
 app.use(express.json());
-app.use("/api", contactRoutes);
-app.use("/api", userRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/user", userRoutes);
 
 dbConn();
 
